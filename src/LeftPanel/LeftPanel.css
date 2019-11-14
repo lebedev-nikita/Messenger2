@@ -1,0 +1,134 @@
+* {
+	box-sizing: border-box;
+}
+
+@import url('../GlobalVariables.css');
+
+.LeftPanel
+{
+	position: fixed;
+	top: 0em;
+	bottom: 0em;
+	left: 0em;
+	width: var(--LeftPanelWidth);
+	
+	font-size: var(--fsize);
+	background: darkgrey;
+}
+
+.LeftPanelHeader
+{
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 0;
+	height: var(--LeftPanelHeaderHeight);
+
+	font-size: var(--fsize);
+	background: darkgrey;
+}
+
+.LeftPanelChannels
+{
+	position: absolute;
+	left: 0;
+	top: var(--LeftPanelHeaderHeight);
+	width: 100%;
+	max-height: calc(100% - var(--LeftPanelHeaderHeight) - var(--LeftPanelBottomHeight));
+
+	font-size: var(--fsize);
+	background: blue;
+	color: #474A51;
+	overflow-y: auto;
+}
+
+.channelDisplay
+{
+	position: relative;
+}
+
+.LeftPanelBottom
+{
+	position: absolute;
+	left: 0em;
+	right: 0em;
+	bottom: 0em;
+	height: var(--LeftPanelBottomHeight);
+
+	font-size: var(--fsize);
+	background: pink;
+	/*transition: background .1s;*/
+}
+
+
+.LeftPanelBottomTextarea
+{
+	position: absolute;
+	left: 0.65em;
+	bottom: 0.7em;
+	width: 20.25em; /* сделать через calc()? */
+
+	font-size: 17px;
+	background: white;
+	color: black;
+	resize: none;
+	overflow: hidden;
+	outline: none;
+	border: 0;
+	border-radius: 0.2em;
+}
+
+.logo
+{
+	position: absolute;
+	top:0.2em;
+	left: 0em;
+	height: 2em;
+	width: 2em;
+}
+
+
+.channelUl { /* стиль для тега <ul> на панели каналов */
+	background-color: #A2A2D0;
+	padding-left: 1em;
+	margin: 0;
+}
+
+.channelButton
+{
+	background: none;
+	border:none;
+	outline: none;
+	color: #000000;
+	opacity: 100%;
+	font-stretch: ultra-condensed;
+	position: absolute;
+	right:0em;
+	bottom: 0.5em;
+	height: 2em;
+	width: 2em;
+	font-family: Rounded;
+}
+.FINDER
+{
+	color: yellow;
+	background: black;
+}
+
+.LeftPanelPlus
+{
+	position: absolute;
+	right: 1em;
+	top:0.7em;
+	height: 1em;
+	width: 1em;
+}
+
+.LeftPanelName
+{
+	position: absolute;
+	color: white;
+	font-size: 30px;
+	left:3em;
+	top:-1.7em;
+}

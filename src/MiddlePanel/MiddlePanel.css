@@ -1,0 +1,135 @@
+@import url('../GlobalVariables.css');
+
+.MiddlePanel
+{
+    position: absolute;
+    left: var(--LeftPanelWidth);
+    right: var(--RightPanelWidth);
+    height: 100%;
+
+    font-size: var(--fsize);
+    background-color: orange;
+}
+
+.MiddlePanelHeader
+{
+    position: fixed;
+    top: 0;
+    left: var(--LeftPanelWidth);
+    right: var(--RightPanelWidth);
+    height: var(--MiddlePanelHeaderHeight);
+    z-index: 1;
+
+    background-color: green;
+}
+
+.MiddlePanelBottom
+{
+    position: fixed;
+    bottom: 0;
+    left: var(--LeftPanelWidth);
+    right: var(--RightPanelWidth);
+    height: var(--MiddlePanelBottomHeight);
+    z-index: 1;
+
+    background-color: darkgrey;
+}
+
+.MiddlePanelBottomTextrea
+{
+    position: absolute;
+    font-size: 23px;
+    left: 0.5em;
+    color: black;
+    resize: none;
+    overflow-y: scroll ;
+    outline: none;
+    bottom: -0.5em;
+    border: 0;
+    border-radius: 0.2em;
+    margin: 1em;
+    width: calc(100% - 5em);
+}
+
+.MiddlePanelBottomPlain
+{
+    position: absolute;
+    top:0.3em;
+    right: 0.7em;
+    height: 1.1em;
+}
+
+.MiddlePanelChat
+{
+    position: absolute;
+    top: var(--MiddlePanelHeaderHeight);
+    left: 0;
+    width: 100%;
+    min-height: 50px; /* Можно убрать? Или нужно для наглядности при 0 сообщений? */
+    z-index: 0;
+
+    margin-bottom: var(--MiddlePanelBottomHeight);
+    background-color: lightgreen;
+}
+
+.Message
+{
+    position: relative;
+    margin: var(--MessageMargin);
+
+    background-color: lightgrey;
+}
+
+.MessageHeader
+{
+    position: relative;
+    height: var(--MessageHeaderHeight);
+
+    background-color: purple;
+}
+
+.MessageAvatar
+{
+    position: absolute;
+    top: var(--MessageAvatarSpaceTopAndLeft);
+    left: var(--MessageAvatarSpaceTopAndLeft);
+    height: var(--MessageAvatarHeight);
+    width: var(--MessageAvatarHeight);
+
+    border: 0;
+    border-radius: calc( var(--MessageAvatarHeight) / 2 );
+}
+
+.NameAndDate
+{
+    position: absolute;
+    top: 0;
+    left: var(--MessageUserNameSpaceLeft);
+
+    height: var(--MessageHeaderHeight);
+    width: 300px;
+    background-color: yellow;
+}
+
+.MessageUserName
+{
+    position: absolute;
+    left: 0;
+    top: 0;
+    
+    font-size: var(--MessageUserNameFontSize);
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+.MessageTime
+{
+    position: absolute;
+    left: 0;
+    top: var(--MessageTimeSpaceTop);
+    
+    font-size: var(--MessageTimeFontSize);
+    display: block;
+    margin: 0;
+    padding: 0;
+}

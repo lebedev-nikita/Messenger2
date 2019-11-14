@@ -1,0 +1,50 @@
+@import url('./GlobalVariablesMax.css');
+
+:root{
+
+/*
+Здесь переменные, значения которых задаются произвольно. Менять их более-менее безопасно.
+===============================================================================================
+*/
+    --fsize : 30px;
+    
+    --LeftPanelWidth: 400px;
+    --RightPanelWidth: 400px;
+
+    --LeftPanelHeaderHeight: 72px;
+    --MiddlePanelHeaderHeight: var(--LeftPanelHeaderHeight);
+    
+    --LeftPanelBottomHeight: 50px;
+    --MiddlePanelBottomHeight: var(--LeftPanelBottomHeight);
+
+    --MessageMargin: 30px;
+
+    --MessageUserNameFontSize: 24px;
+    --MessageTimeFontSize: calc( var(--MessageUserNameFontSize) * 0.85 );
+
+
+/*
+Ниже этой черты идут переменные, отвечающие за пропорции в разметке. 
+Их значения должны представлять собой функции от других заданных переменных.
+В них не должны в явном виде участвовать никакие единицы измерения,
+например [ --Height: calc( var(--Width) + 40px ) ] - НЕДОПУСТИМО
+          [ --Height: calc( var(--Width) * 1.25 ) ] - ДОПУСТИМО
+Хорошо подумайте, прежде чем их менять. 
+===============================================================================================
+*/
+
+    /* 
+        место слева и сверху от аватарки 
+        left: var(--AvatarSpaceTopOrLeft); 
+        top: var(--AvatarSpaceTopOrLeft); 
+    */
+    --MessageAvatarHeight: calc( var(--MessageHeaderHeight) / 1.25);
+    --MessageAvatarSpaceTopAndLeft: calc( ( var(--MessageHeaderHeight) - var(--MessageAvatarHeight) ) / 2); 
+
+    /* SpaceLeft == пространство слева */
+    --MessageUserNameSpaceLeft: calc( var(--MessageAvatarHeight) + var(--MessageAvatarSpaceTopAndLeft) * 4 ) ;
+
+    --MessageTimeSpaceTop: calc( var(--MessageUserNameFontSize) * 1.25 );
+
+    --MessageHeaderHeight: calc( ( var(--MessageUserNameFontSize) + var(--MessageTimeFontSize) ) * 1.4 );
+}
