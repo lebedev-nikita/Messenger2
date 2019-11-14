@@ -37,7 +37,7 @@ class LeftPanelHeader extends React.Component
 	render(){
 		return(
 			<div className="LeftPanelHeader">	
-				<a href="https://github.com/lebedev-nikita/Messenger.git" target="_blank" >	<img src={myimage} className="logo" alt="Sorry" /> </a>
+				<a href="https://github.com/lebedev-nikita/Messenger2.git" target="_blank" >	<img src={myimage} className="logo" alt="Sorry" /> </a>
 			<h6 className="LeftPanelName"> КвазиSlack</h6>
 			<LeftPanelAddchannel/>
 			</div>
