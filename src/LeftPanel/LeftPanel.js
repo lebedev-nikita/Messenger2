@@ -5,6 +5,8 @@ import plus    from './plus.png'
 import dataJSON from './data.json'
 import store_messages from '../MiddlePanel/Store.js'
 import TopNameStore from '../MiddlePanel/MiddleTopStore.js'
+import leftpanel_store from './leftpanel_store.js'
+import { Provider } from 'react-redux'
 
 
 class LeftPanel extends React.Component
@@ -27,7 +29,9 @@ class LeftPanel extends React.Component
 		return (
 			<div className="LeftPanel">
 				<LeftPanelHeader/>
+				<Provider store={leftpanel_store}>
 				<LeftPanelChannel  finder={this.magick}/>
+				</Provider>
 				<LeftPanelBottom  finder={this.change_text}/>
 			</div>
 		);
@@ -103,8 +107,12 @@ class LeftPanelBottom extends React.Component
 		if (!event.shiftKey && event.which === 13){
 			this.setState({"tsize" : "1"});
 			this.props.finder(event.target.value);
-			if (event.target.value.length === 0 ) {this.setState({"color" : "#5B7FA7"}); 
-						this.props.finder("_");}
+			leftpanel_store.dispatch({type : 'CHANGE_FT' , find_text : event.target.value})
+			if (event.target.value.length === 0 ) {
+				this.setState({"color" : "#5B7FA7"}); 
+				this.props.finder("_");
+				leftpanel_store.dispatch({type : 'CHANGE_FT' , find_text : '...'})
+			}
 		}
 	}
 
@@ -122,6 +130,12 @@ class LeftPanelBottom extends React.Component
 		);
 	}
 }
+
+
+
+
+
+
 
 class ListItem extends React.Component
 {
@@ -211,28 +225,9 @@ class LeftPanelChannelConfig extends React.Component
 	}
 }
 
+
 class LeftPanelChannel extends React.Component {
 	
-	constructor(props)
-	{
-		super(props)
-		this.state={"check" : 1}
-		this.evhandClick=this.evhandClick.bind(this);
-		this.changeColor=this.changeColor.bind(this);
-	
-	}
-
-	evhandClick(props)
-	{
-		if (this.state.check) {this.setState({"check":0})}
-		else {this.setState({"check":1})}
-	}
-
-	changeColor(Color)
-	{
-		this.myColor="red"
-	}
-
 	render(){
 		find_text=this.props.finder
 		dataJSON.map( (i) => {  rjson({i})}  )
