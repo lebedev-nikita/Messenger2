@@ -13,7 +13,7 @@
 	width: var(--LeftPanelWidth);
 	
 	font-size: var(--fsize);
-	background: darkgrey;
+	background: #D6E2F5;
 }
 
 .LeftPanelHeader
@@ -25,7 +25,7 @@
 	height: var(--LeftPanelHeaderHeight);
 
 	font-size: var(--fsize);
-	background: darkgrey;
+	background: #5B7FA7;
 }
 
 .LeftPanelChannels
@@ -38,7 +38,7 @@
 
 	font-size: var(--fsize);
 	background: blue;
-	color: #474A51;
+	color: black;
 	overflow-y: auto;
 }
 
@@ -56,7 +56,7 @@
 	height: var(--LeftPanelBottomHeight);
 
 	font-size: var(--fsize);
-	background: pink;
+	background: #5B7FA7;
 	/*transition: background .1s;*/
 }
 
@@ -89,7 +89,7 @@
 
 
 .channelUl { /* стиль для тега <ul> на панели каналов */
-	background-color: #A2A2D0;
+	background-color: #D6E2F5;
 	padding-left: 1em;
 	margin: 0;
 }

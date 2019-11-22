@@ -8,7 +8,7 @@
     height: 100%;
 
     font-size: var(--fsize);
-    background-color: orange;
+    background-color: #FFFFFF;
 }
 
 .MiddlePanelHeader
@@ -20,7 +20,7 @@
     height: var(--MiddlePanelHeaderHeight);
     z-index: 1;
 
-    background-color: green;
+    background-color: #5B7FA7;
 }
 
 .MiddlePanelBottom
@@ -32,7 +32,7 @@
     height: var(--MiddlePanelBottomHeight);
     z-index: 1;
 
-    background-color: darkgrey;
+    background-color: #5B7FA7;
 }
 
 .MiddlePanelBottomTextrea
@@ -69,7 +69,7 @@
     z-index: 0;
 
     margin-bottom: var(--MiddlePanelBottomHeight);
-    background-color: lightgreen;
+    background-color: #FFFFFF;
 }
 
 .Message
@@ -108,7 +108,7 @@
 
     height: var(--MessageHeaderHeight);
     width: 300px;
-    background-color: yellow;
+    background-color: #464684;
 }
 
 .MessageUserName

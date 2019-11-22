@@ -3,6 +3,7 @@ import './LeftPanel.css';
 import myimage from './cat.png'
 import plus    from './plus.png'
 import dataJSON from './data.json'
+import store_messages from '../MiddlePanel/Store.js'
 
 
 class LeftPanel extends React.Component
@@ -74,7 +75,7 @@ class LeftPanelBottom extends React.Component
 	constructor(props)
 	{
 		super(props)
-		this.state={"tsize" : "1", "color" : "lightgrey" , "Find_text" : "_"}
+		this.state={"tsize" : "1", "color" : "#5B7FA7" , "Find_text" : "_"}
 		this.evhandler=this.evhandler.bind(this);
 		this.evchange=this.evchange.bind(this);
 		this.evkey=this.evkey.bind(this);
@@ -83,13 +84,13 @@ class LeftPanelBottom extends React.Component
 
 	evhandler(event){
 		this.setState({"tsize" : "5"});
-		this.setState({"color" : "#6C6874"});
+		this.setState({"color" : "#D0AA76"});
 	}
 
 	evchange(event){
 		this.setState({"tsize" : "5"});
-		this.setState({"color" : "#6C6874"});
-		if (event.target.value.length === 0 ) {this.setState({"color" : "lightgrey"});}
+		this.setState({"color" : "#D0AA76"});
+		if (event.target.value.length === 0 ) {this.setState({"color" : "#5B7FA7"});}
 	}
 
 	entdown(event){
@@ -101,7 +102,7 @@ class LeftPanelBottom extends React.Component
 		if (!event.shiftKey && event.which === 13){
 			this.setState({"tsize" : "1"});
 			this.props.finder(event.target.value);
-			if (event.target.value.length === 0 ) {this.setState({"color" : "lightgrey"}); 
+			if (event.target.value.length === 0 ) {this.setState({"color" : "#5B7FA7"}); 
 						this.props.finder("_");}
 		}
 	}
@@ -131,12 +132,19 @@ class ListItem extends React.Component
 		this.arr = props.it;
 		this.some=props.saw;
 		this.evhandCl=this.evhandCl.bind(this);
+		this.rechange=this.rechange.bind(this);
 	}
 
 	evhandCl(event)
 	{
 		if(this.state.st) {this.setState({"st":0})}
 			else {this.setState({"st":1})}		
+		event.stopPropagation();
+	}
+
+	rechange(i,event)
+	{
+		store_messages.dispatch({ type : 'CHANGE_CHANEL' , id : i})
 		event.stopPropagation();
 	}
 
@@ -148,11 +156,12 @@ class ListItem extends React.Component
 	 		return(
 	 			<div>	
 	 				<div className="channelDisplay" style={loc_style}>
-	 				 	{this.arr.name} 
+	 				 	<div onClick={ this.rechange.bind(this, this.arr.id)}>	{this.arr.name} </div> 
 	 				 	<button onClick={this.evhandCl} className="channelButton" >▼</button>
 	 				 	
 	 				</div>
-					<ul className="channelUl"> {this.arr.values.map( (i) => (
+					<ul className="channelUl"> 
+						{this.arr.values.map( (i) => (
 						<ListItem it={i} saw={0}  />))} 
 					</ul>				
 	 			</div>
@@ -163,7 +172,7 @@ class ListItem extends React.Component
 		 		loc_style.background=this.arr.color	
 	 		return(
 	 			<div  className="channelDisplay" style={loc_style}>
-	 				{this.arr.name}
+	 				<div onClick={ this.rechange.bind(this, this.arr.id)}>	{this.arr.name} </div>
 	 			<button onClick={this.evhandCl} className="channelButton">▶</button>
 	 			 
 	 			</div> // if subchannels close
@@ -174,7 +183,7 @@ class ListItem extends React.Component
 	 		let loc_style={}
 		 		loc_style.background=this.arr.color
 	 		return(
-	 		<div  className="channelDisplay" style={loc_style}  > {this.arr.name}  </div> 
+	 		<div  className="channelDisplay" style={loc_style} > <div onClick={ this.rechange.bind(this, this.arr.id)}>	 {this.arr.name} </div>  </div> 
 	 		);
 		}
 	}
@@ -222,9 +231,8 @@ class LeftPanelChannel extends React.Component {
 	}
 
 	render(){
-		flag=0
 		find_text=this.props.finder
-		dataJSON.map( (i) => {flag=0; if(i.name.indexOf(find_text) !== -1){flash=1} else {flash=0}    rjson({i})}  )
+		dataJSON.map( (i) => {  rjson({i})}  )
 		return(
 			<div className="LeftPanelChannels">
 			
@@ -241,22 +249,37 @@ class LeftPanelChannel extends React.Component {
 	}
 }
 
-const base_color = "red"
-const x_color    = "green"
-let flag=0
 let flash=0
 let find_text="_"
+let deep= []
 
 function rjson(props)
 {
-	if (flash){props.i.color="#E6E6FA";flash=0} else {props.i.color="#A2A2D0"}
+	props.i.color="#D6E2F5"
+	deep.push(props.i.id);
 	if (props.i.values!=="none") {props.i.values.map( (i) => { rjson({i})}  )}
-	if (props.i.values==="none")
-	{
-		if(props.i.name.indexOf(find_text) !== -1 ) {props.i.color="#C1CACA"; flag=1}	
-	}	
-	if ((flag) && (props.i.values!=="none")) {props.i.color="#E6E6FA";}
+	if(props.i.name.toUpperCase().indexOf(find_text.toUpperCase()) !== -1 ) {paint(); }		
+	flash=deep.indexOf(props.i.id,0)
+	if ( flash !== -1) {deep.splice(flash,1)}
 }
 
+function paint()
+{
+	dataJSON.map( (i) => {unpaint({i})}  )
+}
+
+function unpaint(props)
+{
+	if( deep.includes(props.i.id,0) ) {props.i.color="#E1CBAD"}
+	if (props.i.values!=="none") {props.i.values.map( (i) => { unpaint({i})}  )}	
+}
+
+/*
+* Идея номируем каждую вершину как группу 
+* Строим маршрут в Массиве
+* Проходи и красим
+* 
+* 
+*/
 
 export default LeftPanel;

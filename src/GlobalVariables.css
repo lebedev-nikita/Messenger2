@@ -42,7 +42,7 @@
     --MessageAvatarSpaceTopAndLeft: calc( ( var(--MessageHeaderHeight) - var(--MessageAvatarHeight) ) / 2); 
 
     /* SpaceLeft == пространство слева */
-    --MessageUserNameSpaceLeft: calc( var(--MessageAvatarHeight) + var(--MessageAvatarSpaceTopAndLeft) * 4 ) ;
+    --MessageUserNameSpaceLeft: calc( var(--MessageAvatarHeight) + var(--MessageAvatarSpaceTopAndLeft) * 4  ) ;
 
     --MessageTimeSpaceTop: calc( var(--MessageUserNameFontSize) * 1.25 );
 

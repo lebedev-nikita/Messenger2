@@ -1,33 +1,19 @@
 import React from 'react';
 import './MiddlePanel.css';
 import plain from './plane.png';
+import { Provider } from 'react-redux'
+import MiddlePanelChat from './MiddleChat.js'
+import store_messages from './Store.js'
 
 class MiddlePanel extends React.Component
 {
-    render(){
+    render(){         
         return (
             <div className="MiddlePanel">
                 <div className="MiddlePanelHeader"></div>
-                <div className="MiddlePanelChat">
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                    <Message text="Hello" time="12:14:31" name="Nikita" avatar="https://sun1-24.userapi.com/c851136/v851136437/1bb2dd/Gyr0tYE0Ehg.jpg?ava=1" />
-                </div>            
+                <Provider store={store_messages}>
+                <MiddlePanelChat/>    
+                </Provider>            
                 <MiddlePanelBottom/>
             </div>
         );
@@ -45,6 +31,8 @@ class MiddlePanelBottom extends React.Component
         this.evkey=this.evkey.bind(this);
         this.entdown=this.entdown.bind(this);
         this.handplane=this.handplane.bind(this);
+        this.sendMessage = this.sendMessage.bind(this)
+        this.Message= {};
     }
 
     evhandler(event){
@@ -64,17 +52,41 @@ class MiddlePanelBottom extends React.Component
     event.preventDefault();}
     }
 
+    sendMessage()
+    {
+        let currentTime = new Date();
+        
+        this.Message.text=this.state.text;
+        this.Message.time=currentTime.getHours() + ':' + currentTime.getMinutes() + ':' + currentTime.getSeconds();
+        this.Message.avatar="https://a-static.besthdwallpaper.com/naruto-shippuden-pain-wallpaper-1920x1080-7966_48.jpg";
+        this.Message.name="Pain"
+        this.Message.type="ADD"
+
+        store_messages.dispatch(this.Message);
+    }
+
+
     evkey(event){
-        if (!event.shiftKey && event.which === 13){
+        if (!event.shiftKey && event.which === 13)
+        {    
+            if(this.state.text==='\\d'){
+                store_messages.dispatch({type : 'DELETE' })
+            }
+            else{ 
+                this.sendMessage()  
+            }
+
             this.setState({"tsize" : "1"});
             this.setState({"text" : ""});
-            if (event.target.value.length === 0 ) {this.setState({"color" : "lightgrey"});}
+            if (event.target.value.length === 0 ) {this.setState({"color" : "green"});}
         }
     }
 
     handplane(event){
+
+        this.sendMessage()
         this.setState({"tsize" : "1"});
-            this.setState({"text" : ""});
+        this.setState({"text" : ""});
     }
 
     render(){
@@ -94,36 +106,5 @@ class MiddlePanelBottom extends React.Component
 
 
 
-
-
-
-
-
-
-class Message extends React.Component
-{
-    constructor(props)
-    {
-        super(props);
-        this.avatar = this.props.avatar;
-        this.name = this.props.name;
-        this.time = this.props.time;
-        this.text = this.props.text;
-    }
-    render(){
-        return(
-            <div className="Message">
-                <div className="MessageHeader">
-                    <img src={this.avatar} className="MessageAvatar" />
-                    <div className="NameAndDate">
-                        <p className="MessageUserName">{this.name}</p>
-                        <p className="MessageTime">{this.time}</p>
-                    </div>
-                </div>
-                <div> {this.text} </div>
-            </div>
-        );
-    }
-}
 
 export default MiddlePanel;
