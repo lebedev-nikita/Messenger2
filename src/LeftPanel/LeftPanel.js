@@ -4,6 +4,7 @@ import myimage from './cat.png'
 import plus    from './plus.png'
 import dataJSON from './data.json'
 import store_messages from '../MiddlePanel/Store.js'
+import TopNameStore from '../MiddlePanel/MiddleTopStore.js'
 
 
 class LeftPanel extends React.Component
@@ -142,9 +143,11 @@ class ListItem extends React.Component
 		event.stopPropagation();
 	}
 
-	rechange(i,event)
+	rechange(i,name,event)
 	{
+		//store_messages.dispatch({type : 'DELETE' })
 		store_messages.dispatch({ type : 'CHANGE_CHANEL' , id : i})
+		TopNameStore.dispatch({type : 'rename' , name : name})
 		event.stopPropagation();
 	}
 
@@ -156,7 +159,7 @@ class ListItem extends React.Component
 	 		return(
 	 			<div>	
 	 				<div className="channelDisplay" style={loc_style}>
-	 				 	<div onClick={ this.rechange.bind(this, this.arr.id)}>	{this.arr.name} </div> 
+	 				 	<div onClick={ this.rechange.bind(this, this.arr.id ,this.arr.name)}>	{this.arr.name} </div> 
 	 				 	<button onClick={this.evhandCl} className="channelButton" >▼</button>
 	 				 	
 	 				</div>
@@ -172,7 +175,7 @@ class ListItem extends React.Component
 		 		loc_style.background=this.arr.color	
 	 		return(
 	 			<div  className="channelDisplay" style={loc_style}>
-	 				<div onClick={ this.rechange.bind(this, this.arr.id)}>	{this.arr.name} </div>
+	 				<div onClick={ this.rechange.bind(this, this.arr.id,this.arr.name)}>	{this.arr.name} </div>
 	 			<button onClick={this.evhandCl} className="channelButton">▶</button>
 	 			 
 	 			</div> // if subchannels close
@@ -183,7 +186,7 @@ class ListItem extends React.Component
 	 		let loc_style={}
 		 		loc_style.background=this.arr.color
 	 		return(
-	 		<div  className="channelDisplay" style={loc_style} > <div onClick={ this.rechange.bind(this, this.arr.id)}>	 {this.arr.name} </div>  </div> 
+	 		<div  className="channelDisplay" style={loc_style} > <div onClick={ this.rechange.bind(this, this.arr.id,this.arr.name)}>	 {this.arr.name} </div>  </div> 
 	 		);
 		}
 	}

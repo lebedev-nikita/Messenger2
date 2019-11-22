@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStore } from 'redux'
 
-const initial_store_messages = []
+let initial_store_messages = []
 let store_messages = createStore(travel,initial_store_messages );
 
 function test(i)
@@ -22,11 +22,8 @@ function travel(state, action) {
     return newAr;
     case 'DELETE':
     return []
-    case 'CHANGE_CHANEL': 
-        // Функция для отправки на наш сервер
-        //state=[]
-        //state.push(test(action.id))
-    return [...state]
+    case 'CHANGE_CHANEL':
+    return []
     default:
       return state
   }

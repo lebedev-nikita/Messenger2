@@ -3,14 +3,20 @@ import './MiddlePanel.css';
 import plain from './plane.png';
 import { Provider } from 'react-redux'
 import MiddlePanelChat from './MiddleChat.js'
+import MiddlePanelTop  from './MiddleTop.js'
 import store_messages from './Store.js'
+import TopNameStore   from './MiddleTopStore.js'
 
 class MiddlePanel extends React.Component
 {
     render(){         
         return (
             <div className="MiddlePanel">
-                <div className="MiddlePanelHeader"></div>
+                <Provider store={TopNameStore}>
+                <div className="MiddlePanelHeader">
+                <MiddlePanelTop/>
+                </div>
+                </Provider>
                 <Provider store={store_messages}>
                 <MiddlePanelChat/>    
                 </Provider>            

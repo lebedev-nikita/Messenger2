@@ -133,3 +133,21 @@
     margin: 0;
     padding: 0;
 }
+
+.ChanelTopName
+{
+    color: #FFFFFF;
+    font-size: 35px;
+    position: absolute;
+    bottom: -0.6em;
+    left: 12em;
+}
+
+.NumberMEssage
+{
+    color: #FFFFFF;
+    font-size: 35px;
+    position: absolute;
+    bottom: -0.6em;
+    left: 10em;
+}
