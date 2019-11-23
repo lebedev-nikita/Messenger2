@@ -8,6 +8,7 @@ import TopNameStore from '../MiddlePanel/MiddleTopStore.js'
 import leftpanel_store from './leftpanel_store.js'
 import { Provider } from 'react-redux'
 import LeftPanelChannel from './LeftPanelChanelList.js'
+import windowStore from '../AddChanel/windowStore.js'
 
 class LeftPanel extends React.Component
 {
@@ -30,8 +31,10 @@ class LeftPanelHeader extends React.Component
 	render(){
 		return(
 			<div className="LeftPanelHeader">	
-				<a href="https://github.com/lebedev-nikita/Messenger2.git" target="_blank" >	<img src={myimage} className="logo" alt="Sorry" /> </a>
+				<a href="https://github.com/lebedev-nikita/Messenger2.git" target="_blank" >
+					<img src={myimage} className="logo" alt="Sorry" /> </a>
 			<h6 className="LeftPanelName"> КвазиSlack</h6>
+			
 			<LeftPanelAddchannel/>
 			</div>
 		);
@@ -48,16 +51,15 @@ class LeftPanelAddchannel extends React.Component //this function must open wind
 	}
 
 	OpenWindow(event){
-		if(this.state.open){this.setState({"open" : 0})}
-			else {this.setState({"open":1})}
+		if(this.state.open){this.setState({"open" : 0}); windowStore.dispatch({type : 'ON' })}
+			else {this.setState({"open":1}); windowStore.dispatch({type : 'OFF' })}
 	}
 
 	render(){
-		return(
-		<div>
-			<img src={plus} className="LeftPanelPlus" alt="Sorry" onClick={this.OpenWindow} /> 
-		</div>
-		);
+		
+			return(
+				<img src={plus} className="LeftPanelPlus" alt="Sorry" onClick={this.OpenWindow} /> 
+			)
 							
 	}
 }
@@ -115,9 +117,5 @@ class LeftPanelBottom extends React.Component
 		);
 	}
 }
-
-
-
-
 
 export default LeftPanel;

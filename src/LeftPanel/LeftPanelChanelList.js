@@ -11,7 +11,6 @@ class ListItem extends React.Component
 	{
 		super(props)
 		this.state={"st" : props.saw  }
-		this.color=this.state.color;
 		this.arr = props.it;
 		this.some=props.saw;
 		this.evhandCl=this.evhandCl.bind(this);

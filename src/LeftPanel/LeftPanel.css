@@ -132,3 +132,10 @@
 	left:3em;
 	top:-1.7em;
 }
+
+.window
+{
+	position: absolute;
+	font-size: 30px;
+	color: blue;
+}

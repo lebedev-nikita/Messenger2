@@ -16,7 +16,6 @@ class MiddlePanelChat extends React.Component
     }
 }
 
-
 class Message extends React.Component
 {
     constructor(props)
