@@ -7,7 +7,7 @@
 	left: 177px;
 	right: 197px;
 	bottom: 60px;
-	background: blue;
+	background: white;
 }
 .BackEnd
 {
@@ -26,10 +26,12 @@
 	height: 50px;
 	width: 50px;
 }
-.FormName
+
+
+.OneText
 {
 	position: absolute;
-	left:20px;
-	color: white;
-	font-size: 40px;
+	left: 100px;
+	right: 100px;
+	top:50px;
 }
