@@ -32,6 +32,30 @@
 {
 	position: absolute;
 	left: 100px;
-	right: 100px;
+	right: 300px;
 	top:50px;
+}
+
+.DoneButton
+{
+	position: absolute;
+	right: 100px;
+	top: 53px;
+}
+
+.LocalFinder
+{
+	position: absolute;
+	left: 100px;
+	right: 700px;
+	bottom: 20px;
+}
+
+.YouChose
+{
+	position: absolute;
+	color: grey;
+	font-size: 17px;
+	left: 100px;
+	top :150px;
 }
